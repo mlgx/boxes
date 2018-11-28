@@ -11,5 +11,7 @@ defmodule Boxes.Repo.Migrations.CreateBoxes do
 
     create(index(:boxes, [:id]))
     create(index(:boxes, [:parent]))
+
+    # TODO: add trigger that checks if parent ID exists in the table.
   end
 end
