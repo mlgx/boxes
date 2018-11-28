@@ -5,11 +5,11 @@ Boxes helps you keep track of where your stuff is.
 Everything is a box.  
 You can have boxes inside a box.
 
-### Copies
+##### Copies
 A box can be inside multiple boxes or can be multiple times inside a box.  
 Example: your car keys.
 
-### Pieces
+##### Pieces
 A box can be broken down into pieces.  
 Pieces can be placed into various boxes.  
 Each piece is itself a box.  
