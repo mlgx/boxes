@@ -6,13 +6,11 @@ Everything is a box.
 You can have boxes inside a box.
 
 #### Copies
-A box can be inside multiple boxes or can be multiple times inside a box.  
+A box can be inside multiple boxes and multiple times inside a box.  
 Example: your car keys.
 
 #### Pieces
-A box can be broken down into pieces.  
-Pieces can be placed into various boxes.  
-Each piece is itself a box.  
+A box can be broken down into pieces. Each piece is itself a box.  
 Example: your desktop computer (tower, screen, keyboard, etc).
 
 ## Why
