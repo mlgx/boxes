@@ -9,7 +9,7 @@ You can have boxes inside a box.
 ### Copies
 A box can be inside multiple boxes, or can be multiple times inside a single box.
 
-Example: the keys to your safe.
+Example: your car keys.
 
 ### Pieces
 A box can be broken down into pieces.
