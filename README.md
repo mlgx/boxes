@@ -21,4 +21,6 @@ Each piece is itself a box.
 Example: your desktop computer (tower, screen, keyboard, etc).
 
 ## Why
-I wanted to create a flexible model of the physical world using a very simple database schema: `CREATE TABLE boxes (id, parent, name);`
+I wanted to create a flexible model of the physical world using a very simple database schema:
+
+`CREATE TABLE boxes (id, parent, name);`
