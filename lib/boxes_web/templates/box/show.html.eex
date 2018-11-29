@@ -1,0 +1,86 @@
+<h2>Show Box</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @box.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @box.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: box_path(@conn, :edit, @box) %></span>
+
+<h3>Relationships</h3>
+
+<%= if Enum.count(@parent_boxes) > 1 do %>
+  <p>There's <%= Enum.count(@parent_boxes) %> copies of <%= @box.name %>.</p>
+<% end %>
+
+<h4>Inside of</h4>
+<%= if @box.virtual do %>
+  <p>This box is virtual and cannot be inside a box.</p>
+<%= else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for box <- @parent_boxes do %>
+      <tr>
+        <td><%= box.name %></td>
+        <td><%= box.description %></td>
+
+        <td class="text-right">
+          <span><%= link "Show", to: box_path(@conn, :show, box), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Edit", to: box_path(@conn, :edit, box), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete", to: box_path(@conn, :delete, box), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+
+<span><%= link "Add relationship", to: box_path(@conn, :new) %></span>
+<% end %>
+
+
+
+<h4>Contains</h4>
+<%= if @box.virtual do %>
+  <p>This box is virtual and is composed of the following pieces:</p>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for box <- @child_boxes do %>
+    <tr>
+      <td><%= box.name %></td>
+      <td><%= box.description %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: box_path(@conn, :show, box), class: "btn btn-default btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "Back", to: box_path(@conn, :index) %></span>
