@@ -35,7 +35,7 @@ defmodule BoxesWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_boxes_key",
-    signing_salt: "ljpiuSA+"
+    signing_salt: "jPEGSspO"
 
   plug BoxesWeb.Router
 

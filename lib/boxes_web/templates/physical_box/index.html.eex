@@ -1,0 +1,28 @@
+<h2>Listing Physical boxes</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for physical_box <- @physical_boxes do %>
+    <tr>
+      <td><%= physical_box.name %></td>
+      <td><%= physical_box.description %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: physical_box_path(@conn, :show, physical_box), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: physical_box_path(@conn, :edit, physical_box), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: physical_box_path(@conn, :delete, physical_box), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Physical box", to: physical_box_path(@conn, :new) %></span>

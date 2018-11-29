@@ -1,0 +1,18 @@
+<h2>Show Physical relationship</h2>
+
+<ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= @physical_relationship.id %>
+  </li>
+
+  <li>
+    <strong>Parent:</strong>
+    <%= @physical_relationship.parent_id %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: physical_relationship_path(@conn, :edit, @physical_relationship) %></span>
+<span><%= link "Back", to: physical_relationship_path(@conn, :index) %></span>
