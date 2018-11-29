@@ -1,0 +1,5 @@
+<h2>New Physical relationship</h2>
+
+<%= render "form.html", Map.put(assigns, :action, physical_relationship_path(@conn, :create)) %>
+
+<span><%= link "Back", to: physical_relationship_path(@conn, :index) %></span>

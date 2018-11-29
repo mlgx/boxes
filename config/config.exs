@@ -12,7 +12,7 @@ config :boxes,
 # Configures the endpoint
 config :boxes, BoxesWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "mXjdA9oImkhe3N2AHoiKOmauKR75GZQUNaWkVlPZ/xUQGRd3y+Xbyja7hJvYVxQ7",
+  secret_key_base: "+h6sFZ9NP+gAz7kcmJHS3LTnBZYW/2t13NJyJyZR0V+W2u+MIH5hp4mAqcv9kPje",
   render_errors: [view: BoxesWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Boxes.PubSub,
            adapter: Phoenix.PubSub.PG2]

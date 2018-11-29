@@ -1,0 +1,5 @@
+<h2>Edit Physical box</h2>
+
+<%= render "form.html", Map.put(assigns, :action, physical_box_path(@conn, :update, @physical_box)) %>
+
+<span><%= link "Back", to: physical_box_path(@conn, :index) %></span>

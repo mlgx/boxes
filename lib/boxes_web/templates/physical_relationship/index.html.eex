@@ -1,0 +1,28 @@
+<h2>Listing Physical boxes relationships</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Parent</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for physical_relationship <- @physical_boxes_relationships do %>
+    <tr>
+      <td><%= physical_relationship.id %></td>
+      <td><%= physical_relationship.parent_id %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: physical_relationship_path(@conn, :show, physical_relationship), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: physical_relationship_path(@conn, :edit, physical_relationship), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: physical_relationship_path(@conn, :delete, physical_relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Physical relationship", to: physical_relationship_path(@conn, :new) %></span>

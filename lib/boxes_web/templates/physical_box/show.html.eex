@@ -1,0 +1,18 @@
+<h2>Show Physical box</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @physical_box.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @physical_box.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: physical_box_path(@conn, :edit, @physical_box) %></span>
+<span><%= link "Back", to: physical_box_path(@conn, :index) %></span>
