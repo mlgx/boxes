@@ -17,3 +17,6 @@ Example: your desktop computer (tower, screen, keyboard, etc).
 I wanted to create a flexible model of the physical world using a very simple
 database schema:  
 `CREATE TABLE boxes (id, parent, name);`
+
+This schema is not suited for our use case and adds a lot of complexity to the implementation.
+This is just part of an exercise and an excuse to play with Ecto.
