@@ -3,10 +3,12 @@ defmodule Boxes.Repo.Migrations.CreatePhysicalBoxes do
 
   def change do
     create table(:physical_boxes) do
-      add(:name, :string, unique: true, null: false)
+      add(:name, :string, null: false)
       add(:description, :string)
 
       timestamps()
     end
+
+    create(unique_index(:physical_boxes, :name))
   end
 end

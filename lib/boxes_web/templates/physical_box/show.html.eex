@@ -16,3 +16,70 @@
 
 <span><%= link "Edit", to: physical_box_path(@conn, :edit, @physical_box) %></span>
 <span><%= link "Back", to: physical_box_path(@conn, :index) %></span>
+
+<h3>List Parents</h2>
+
+<%# If a (physical) box has more than one parent relationship, and thus is in more than one place at a time,
+    it must be because there are copies of the box. %>
+<%= if Enum.count(@physical_box.physical_parents_relationships) > 1 do %>
+  There are <%= Enum.count(@physical_box.physical_parents_relationships) %> 
+  copies of <strong><%= @physical_box.name %></strong>.
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%# We use the relationships list instead of going directly through the parents list
+      because we want to provide a "Delete Relationship" button. %>
+<%= for rel <- @physical_box.physical_parents_relationships do %>
+    <tr>
+      <td><%= rel.parent.name %></td>
+      <td><%= rel.parent.description %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: physical_box_path(@conn, :show, rel.parent), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete Relationship", to: physical_relationship_path(@conn, :delete, rel), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "Add parent", to: physical_relationship_path(@conn, :new, box_id: @physical_box) %></span>
+
+<h3>List Children</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%# We use the relationships list instead of going directly through the children list
+      because we want to provide a "Delete Relationship" button. %>
+<%= for rel <- @physical_box.physical_children_relationships do %>
+    <tr>
+      <td><%= rel.box.name %></td>
+      <td><%= rel.box.description %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: physical_box_path(@conn, :show, rel.box), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete Relationship", to: physical_relationship_path(@conn, :delete, rel), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "Add children", to: physical_relationship_path(@conn, :new, parent_id: @physical_box) %></span>
