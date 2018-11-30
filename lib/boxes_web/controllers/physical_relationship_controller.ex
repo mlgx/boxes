@@ -1,5 +1,6 @@
 defmodule BoxesWeb.PhysicalRelationshipController do
   use BoxesWeb, :controller
+  alias BoxesWeb.QueryFilter
 
   alias Boxes.Physical
   alias Boxes.Physical.PhysicalRelationship
@@ -9,9 +10,11 @@ defmodule BoxesWeb.PhysicalRelationshipController do
     render(conn, "index.html", physical_boxes_relationships: physical_boxes_relationships)
   end
 
-  def new(conn, _params) do
+  def new(conn, params) do
     changeset = Physical.change_physical_relationship(%PhysicalRelationship{})
-    render(conn, "new.html", changeset: changeset)
+    physical_boxes = Boxes.Physical.list_physical_boxes()
+    params = QueryFilter.changeset(%PhysicalRelationship{}, params)
+    render(conn, "new.html", changeset: changeset, physical_boxes: physical_boxes, params: params)
   end
 
   def create(conn, %{"physical_relationship" => physical_relationship_params}) do
@@ -20,8 +23,10 @@ defmodule BoxesWeb.PhysicalRelationshipController do
         conn
         |> put_flash(:info, "Physical relationship created successfully.")
         |> redirect(to: physical_relationship_path(conn, :show, physical_relationship))
+
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        physical_boxes = Boxes.Physical.list_physical_boxes()
+        render(conn, "new.html", changeset: changeset, physical_boxes: physical_boxes, params: [])
     end
   end
 
@@ -39,13 +44,20 @@ defmodule BoxesWeb.PhysicalRelationshipController do
   def update(conn, %{"id" => id, "physical_relationship" => physical_relationship_params}) do
     physical_relationship = Physical.get_physical_relationship!(id)
 
-    case Physical.update_physical_relationship(physical_relationship, physical_relationship_params) do
+    case Physical.update_physical_relationship(
+           physical_relationship,
+           physical_relationship_params
+         ) do
       {:ok, physical_relationship} ->
         conn
         |> put_flash(:info, "Physical relationship updated successfully.")
         |> redirect(to: physical_relationship_path(conn, :show, physical_relationship))
+
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", physical_relationship: physical_relationship, changeset: changeset)
+        render(conn, "edit.html",
+          physical_relationship: physical_relationship,
+          changeset: changeset
+        )
     end
   end
 

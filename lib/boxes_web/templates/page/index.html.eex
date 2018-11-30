@@ -2,7 +2,12 @@
   <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
   <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
 </div>
-
+<div>
+  <ul>
+    <li><%= link "Physical Boxes", to: physical_box_path(@conn, :index), method: :get %></li>
+    <li><%= link "Physical Boxes Relationships", to: physical_relationship_path(@conn, :index), method: :get %></li>
+  </ul>
+</div>
 <div class="row marketing">
   <div class="col-lg-6">
     <h4>Resources</h4>

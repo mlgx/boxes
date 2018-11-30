@@ -3,7 +3,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Id</th>
+      <th>Box</th>
       <th>Parent</th>
 
       <th></th>
@@ -12,7 +12,7 @@
   <tbody>
 <%= for physical_relationship <- @physical_boxes_relationships do %>
     <tr>
-      <td><%= physical_relationship.id %></td>
+      <td><%= physical_relationship.box_id %></td>
       <td><%= physical_relationship.parent_id %></td>
 
       <td class="text-right">

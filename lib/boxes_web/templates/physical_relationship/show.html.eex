@@ -1,18 +1,37 @@
-<h2>Show Physical relationship</h2>
+<h2>Show Physical boxes relationship</h2>
 
-<ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
 
-  <li>
-    <strong>Id:</strong>
-    <%= @physical_relationship.id %>
-  </li>
+  <tr>
+    <td><strong>Box</strong></td>
+    <td><%= @physical_relationship.box_id %></td>
+    <td><%= @physical_relationship.box.name %></td>
+    <td><%= @physical_relationship.box.description %></td>
+    <td class="text-right">
+        <span><%= link "Show", to: physical_box_path(@conn, :show, @physical_relationship.box), class: "btn btn-default btn-xs" %></span>
+    </td>
+  </tr>
 
-  <li>
-    <strong>Parent:</strong>
-    <%= @physical_relationship.parent_id %>
-  </li>
+  <tr>
+    <td><strong>Parent</strong></td>
+    <td><%= @physical_relationship.parent_id %></td>
+    <td><%= @physical_relationship.parent.name %></td>
+    <td><%= @physical_relationship.parent.description %></td>
+    <td class="text-right">
+        <span><%= link "Show", to: physical_box_path(@conn, :show, @physical_relationship.parent), class: "btn btn-default btn-xs" %></span>
+    </td>
+  </tr>
 
-</ul>
+</table>
 
 <span><%= link "Edit", to: physical_relationship_path(@conn, :edit, @physical_relationship) %></span>
 <span><%= link "Back", to: physical_relationship_path(@conn, :index) %></span>

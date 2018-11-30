@@ -2,9 +2,9 @@ defmodule Boxes.Repo.Migrations.CreatePhysicalBoxesRelationships do
   use Ecto.Migration
 
   def change do
-    create table(:physical_boxes_relationships, primary_key: false) do
-      add(:id, :integer, null: false, references(:physical_boxes))
-      add(:parent_id, :integer, null: false, references(:physical_boxes))
+    create table(:physical_boxes_relationships) do
+      add(:box_id, references(:physical_boxes), null: false)
+      add(:parent_id, references(:physical_boxes), null: false)
 
       timestamps()
     end
