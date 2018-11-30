@@ -19,18 +19,7 @@ Example of VPs: furniture, bedding.
 
 VBs are here to help organize your PBs into logical groups.
 They don't tell you where your PBs are in the real world.
-They work a bit like folders in a file system.
-
-Example of hierarchy (`^` = Virtual, `*` = Physical):
-```
-+ Furniture^       House* +
-+-+ Bedding^   Bedroom* +-+
-| +------- Bed* --------| |
-| +----- Sheets* -------+ |
-|               Lounge* +-+
-+------- Table* --------+
-+------- Chairs* ---x4--+
-```
+They work a bit like folders in a file system. VBs form a tree, while PBs form a graph.
 
 ## Rules for physical boxes
 
