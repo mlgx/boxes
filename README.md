@@ -12,14 +12,15 @@ There's two types of boxes:
 * Virtual Boxes (VBs)
 
 Physical Boxes -like the name indicates- represent physical objets.  
+Use them to describe where a physical object is in the real world.  
 Example of PBs: bed, table, chairs, bedroom, house.
 
 Virtual Boxes represent concepts or ideas.  
+Use them to organize your PBs into logical groups.  
 Example of VPs: furniture, bedding.
 
-VBs are here to help organize your PBs into logical groups.
-They don't tell you where your PBs are in the real world.
-They work a bit like folders in a file system. VBs form a tree, while PBs form a graph.
+The main difference between them is that VBs form trees, while PBs form directed acyclic graphs
+(with a major simplification: nodes with more than one parent can't have children).
 
 ## Rules for physical boxes
 
@@ -86,6 +87,14 @@ INSERT INTO physical_boxes (id, name, description) VALUES (3, 'House key', 'The 
 INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (3, 1);
 INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (3, 2);
 INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (3, 2);
+```
+* A PB of which there are copies (2+ parents) cannot have children.
+
+```sql
+-- Should fail:
+INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (3, 1);
+INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (3, 2);
+INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (4, 3);
 ```
 
 ## Rules for virtual boxes
