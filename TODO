@@ -1,2 +1,5 @@
 - Prevent cyclical references
 - Write tests
+- Show siblings
+- Show tree listing
+- Redirect to the right pages after deletes and such
