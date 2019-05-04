@@ -1,4 +1,8 @@
 defmodule Boxes.Physical.PhysicalRelationship do
+  @moduledoc """
+  Physical Relationship model.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

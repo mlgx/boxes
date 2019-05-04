@@ -1,12 +1,16 @@
 defmodule Boxes.Physical.PhysicalBox do
+  @moduledoc """
+  Physical Box model.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
   alias Boxes.Physical.PhysicalRelationship
 
   schema "physical_boxes" do
-    field :name, :string
-    field :description, :string
+    field(:name, :string)
+    field(:description, :string)
 
     timestamps()
 
