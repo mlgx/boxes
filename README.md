@@ -17,7 +17,7 @@ Example of PBs: bed, table, chairs, bedroom, house.
 
 Virtual Boxes represent concepts or ideas.  
 Use them to organize your PBs into logical groups.  
-Example of VPs: furniture, bedding.
+Example of VBs: furniture, bedding.
 
 The main difference between them is that VBs form trees, while PBs form directed acyclic graphs
 (with a major simplification: nodes with more than one parent can't have children).
@@ -64,13 +64,16 @@ CREATE TABLE physical_boxes_relationships (
 INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (2, 1);
 ```
 * A PB cannot be inside itself.
-* Circular references should not be permitted either.
 
 ```sql
 -- Should fail:
 --   Box 1 is inside box 1.
 INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (1, 1);
--- and
+```
+* Circular references should not be permitted either.
+
+```sql
+-- Should fail:
 --   Box 2 is inside box 1 which is inside box 2.
 INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (2, 1);
 INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (1, 2);
@@ -109,7 +112,7 @@ CREATE TABLE virtual_boxes (
 )
 ```
 * VBs can be inside other VBs.
-* but unlike PBs, a VB cannot be inside multiple VBs at once.
+* Unlike PBs, a VB cannot be inside multiple VBs at once.
   * You can't have _copies_ of something virtual (i.e. of a concept).
 
 ```sql
@@ -123,20 +126,24 @@ CREATE TABLE virtual_boxes_relationships (
 --   Box 2 is inside box 1.
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (2, 1);
 -- Should fail:
+--   Box 1 is inside box 2 and 3.
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (1, 2);
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (1, 3);
 -- and
+--   Box 1 is inside box 2 twice.
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (1, 2);
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (1, 2);
 ```
 * A VB cannot be inside itself.
-* Circular references should not be permitted either.
-
 ```sql
 -- Should fail:
 --   Box 1 is inside box 1.
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (1, 1);
--- and
+```
+* Circular references should not be permitted either.
+
+```sql
+-- Should fail:
 --   Box 2 is inside box 1 which is inside box 2.
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (2, 1);
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (1, 2);
@@ -146,6 +153,7 @@ INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (1, 2);
 
 * VBs cannot be inside PBs.
 * A PB can be inside a VB (but not inside multiple VBs at once).
+  * TODO: consider removing this restriction.
 
 ```sql
 CREATE TABLE boxes_relationships (
