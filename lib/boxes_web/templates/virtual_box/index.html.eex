@@ -1,0 +1,28 @@
+<h2>Listing Virtual boxes</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for virtual_box <- @virtual_boxes do %>
+    <tr>
+      <td><%= virtual_box.name %></td>
+      <td><%= virtual_box.description %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: virtual_box_path(@conn, :show, virtual_box), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: virtual_box_path(@conn, :edit, virtual_box), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: virtual_box_path(@conn, :delete, virtual_box), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Virtual box", to: virtual_box_path(@conn, :new) %></span>

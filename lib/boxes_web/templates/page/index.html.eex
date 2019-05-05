@@ -6,6 +6,8 @@
   <ul>
     <li><%= link "Physical Boxes", to: physical_box_path(@conn, :index), method: :get %></li>
     <li><%= link "Physical Boxes Relationships", to: physical_relationship_path(@conn, :index), method: :get %></li>
+    <li><%= link "Virtual Boxes", to: virtual_box_path(@conn, :index), method: :get %></li>
+    <li><%= link "Virtual Boxes Relationships", to: virtual_relationship_path(@conn, :index), method: :get %></li>
   </ul>
 </div>
 <div class="row marketing">
