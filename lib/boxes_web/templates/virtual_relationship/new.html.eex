@@ -1,0 +1,5 @@
+<h2>New Virtual relationship</h2>
+
+<%= render "form.html", Map.put(assigns, :action, virtual_relationship_path(@conn, :create)) %>
+
+<span><%= link "Back", to: virtual_box_path(@conn, :index) %></span>

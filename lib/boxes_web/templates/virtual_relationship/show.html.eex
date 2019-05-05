@@ -1,0 +1,37 @@
+<h2>Show Virtual boxes relationship</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tr>
+    <td><strong>Box</strong></td>
+    <td><%= @virtual_relationship.box_id %></td>
+    <td><%= @virtual_relationship.box.name %></td>
+    <td><%= @virtual_relationship.box.description %></td>
+    <td class="text-right">
+        <span><%= link "Show", to: virtual_box_path(@conn, :show, @virtual_relationship.box), class: "btn btn-default btn-xs" %></span>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Parent</strong></td>
+    <td><%= @virtual_relationship.parent_id %></td>
+    <td><%= @virtual_relationship.parent.name %></td>
+    <td><%= @virtual_relationship.parent.description %></td>
+    <td class="text-right">
+        <span><%= link "Show", to: virtual_box_path(@conn, :show, @virtual_relationship.parent), class: "btn btn-default btn-xs" %></span>
+    </td>
+  </tr>
+
+</table>
+
+<span><%= link "Edit", to: virtual_relationship_path(@conn, :edit, @virtual_relationship) %></span>
+<span><%= link "Back", to: virtual_relationship_path(@conn, :index) %></span>

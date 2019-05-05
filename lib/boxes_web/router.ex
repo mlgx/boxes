@@ -21,6 +21,8 @@ defmodule BoxesWeb.Router do
 
     resources("/physical_boxes", PhysicalBoxController)
     resources("/physical_boxes_relationships", PhysicalRelationshipController)
+    resources("/virtual_boxes", VirtualBoxController)
+    resources("/virtual_boxes_relationships", VirtualRelationshipController)
   end
 
   # Other scopes may use custom stacks.

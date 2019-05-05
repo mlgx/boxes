@@ -1,0 +1,5 @@
+<h2>New Virtual box</h2>
+
+<%= render "form.html", Map.put(assigns, :action, virtual_box_path(@conn, :create)) %>
+
+<span><%= link "Back", to: virtual_box_path(@conn, :index) %></span>
