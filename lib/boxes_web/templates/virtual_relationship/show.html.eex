@@ -17,7 +17,7 @@
     <td><%= @virtual_relationship.box.name %></td>
     <td><%= @virtual_relationship.box.description %></td>
     <td class="text-right">
-        <span><%= link "Show", to: virtual_box_path(@conn, :show, @virtual_relationship.box), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Show", to: Routes.virtual_box_path(@conn, :show, @virtual_relationship.box), class: "btn btn-default btn-xs" %></span>
     </td>
   </tr>
 
@@ -27,11 +27,11 @@
     <td><%= @virtual_relationship.parent.name %></td>
     <td><%= @virtual_relationship.parent.description %></td>
     <td class="text-right">
-        <span><%= link "Show", to: virtual_box_path(@conn, :show, @virtual_relationship.parent), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Show", to: Routes.virtual_box_path(@conn, :show, @virtual_relationship.parent), class: "btn btn-default btn-xs" %></span>
     </td>
   </tr>
 
 </table>
 
-<span><%= link "Edit", to: virtual_relationship_path(@conn, :edit, @virtual_relationship) %></span>
-<span><%= link "Back", to: virtual_relationship_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.virtual_relationship_path(@conn, :edit, @virtual_relationship) %></span>
+<span><%= link "Back", to: Routes.virtual_relationship_path(@conn, :index) %></span>

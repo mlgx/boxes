@@ -14,8 +14,8 @@
 
 </ul>
 
-<span><%= link "Edit", to: virtual_box_path(@conn, :edit, @virtual_box) %></span>
-<span><%= link "Back", to: virtual_box_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.virtual_box_path(@conn, :edit, @virtual_box) %></span>
+<span><%= link "Back", to: Routes.virtual_box_path(@conn, :index) %></span>
 
 <h3>Parent</h3>
 
@@ -33,10 +33,10 @@
       <tr>
         <td><%= @virtual_box.virtual_parent.name %></td>
         <td><%= @virtual_box.virtual_parent.description %></td>
-  
+
         <td class="text-right">
-          <span><%= link "Show", to: virtual_box_path(@conn, :show, @virtual_box.virtual_parent), class: "btn btn-default btn-xs" %></span>
-          <span><%= link "Delete Relationship", to: virtual_relationship_path(@conn, :delete, @virtual_box.virtual_parent_relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <span><%= link "Show", to: Routes.virtual_box_path(@conn, :show, @virtual_box.virtual_parent), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete Relationship", to: Routes.virtual_relationship_path(@conn, :delete, @virtual_box.virtual_parent_relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         </td>
       </tr>
     <% end %>
@@ -44,7 +44,7 @@
 </table>
 
 <%= if is_nil(@virtual_box.virtual_parent) do %>
-<span><%= link "Add parent", to: virtual_relationship_path(@conn, :new, box_id: @virtual_box) %></span>
+<span><%= link "Add parent", to: Routes.virtual_relationship_path(@conn, :new, box_id: @virtual_box) %></span>
 <% end %>
 
 <h3>List Children</h3>
@@ -67,12 +67,12 @@
         <td><%= relationship.box.description %></td>
 
         <td class="text-right">
-          <span><%= link "Show", to: virtual_box_path(@conn, :show, relationship.box), class: "btn btn-default btn-xs" %></span>
-          <span><%= link "Delete Relationship", to: virtual_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <span><%= link "Show", to: Routes.virtual_box_path(@conn, :show, relationship.box), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete Relationship", to: Routes.virtual_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= link "Add child", to: virtual_relationship_path(@conn, :new, parent_id: @virtual_box) %></span>
+<span><%= link "Add child", to: Routes.virtual_relationship_path(@conn, :new, parent_id: @virtual_box) %></span>

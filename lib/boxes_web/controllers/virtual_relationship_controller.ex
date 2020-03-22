@@ -24,8 +24,8 @@ defmodule BoxesWeb.VirtualRelationshipController do
     case Virtual.create_virtual_relationship(virtual_relationship_params) do
       {:ok, virtual_relationship} ->
         conn
-        |> put_flash(:info, ["Virtual relationship created successfully.", link("Create new one?", to: virtual_relationship_path(conn, :new))])
-        |> redirect(to: virtual_relationship_path(conn, :show, virtual_relationship))
+        |> put_flash(:info, ["Virtual relationship created successfully.", link("Create new one?", to: Routes.virtual_relationship_path(conn, :new))])
+        |> redirect(to: Routes.virtual_relationship_path(conn, :show, virtual_relationship))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         virtual_boxes = Virtual.list_virtual_boxes()
@@ -55,7 +55,7 @@ defmodule BoxesWeb.VirtualRelationshipController do
       {:ok, virtual_relationship} ->
         conn
         |> put_flash(:info, "Virtual relationship updated successfully.")
-        |> redirect(to: virtual_relationship_path(conn, :show, virtual_relationship))
+        |> redirect(to: Routes.virtual_relationship_path(conn, :show, virtual_relationship))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html",
@@ -71,6 +71,6 @@ defmodule BoxesWeb.VirtualRelationshipController do
 
     conn
     |> put_flash(:info, "Virtual relationship deleted successfully.")
-    |> redirect(to: virtual_relationship_path(conn, :index))
+    |> redirect(to: Routes.virtual_relationship_path(conn, :index))
   end
 end

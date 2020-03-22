@@ -24,8 +24,8 @@ defmodule BoxesWeb.PhysicalRelationshipController do
     case Physical.create_physical_relationship(physical_relationship_params) do
       {:ok, physical_relationship} ->
         conn
-        |> put_flash(:info, ["Physical relationship created successfully.", link("Create new one?", to: physical_relationship_path(conn, :new))])
-        |> redirect(to: physical_relationship_path(conn, :show, physical_relationship))
+        |> put_flash(:info, ["Physical relationship created successfully.", link("Create new one?", to: Routes.physical_relationship_path(conn, :new))])
+        |> redirect(to: Routes.physical_relationship_path(conn, :show, physical_relationship))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         physical_boxes = Physical.list_physical_boxes()
@@ -55,7 +55,7 @@ defmodule BoxesWeb.PhysicalRelationshipController do
       {:ok, physical_relationship} ->
         conn
         |> put_flash(:info, "Physical relationship updated successfully.")
-        |> redirect(to: physical_relationship_path(conn, :show, physical_relationship))
+        |> redirect(to: Routes.physical_relationship_path(conn, :show, physical_relationship))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html",
@@ -71,6 +71,6 @@ defmodule BoxesWeb.PhysicalRelationshipController do
 
     conn
     |> put_flash(:info, "Physical relationship deleted successfully.")
-    |> redirect(to: physical_relationship_path(conn, :index))
+    |> redirect(to: Routes.physical_relationship_path(conn, :index))
   end
 end

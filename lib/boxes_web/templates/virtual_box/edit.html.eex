@@ -1,5 +1,5 @@
 <h2>Edit Virtual box</h2>
 
-<%= render "form.html", Map.put(assigns, :action, virtual_box_path(@conn, :update, @virtual_box)) %>
+<%= render "form.html", Map.put(assigns, :action, Routes.virtual_box_path(@conn, :update, @virtual_box)) %>
 
-<span><%= link "Back", to: virtual_box_path(@conn, :index) %></span>
+<span><%= link "Back", to: Routes.virtual_box_path(@conn, :index) %></span>

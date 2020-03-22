@@ -14,8 +14,8 @@
 
 </ul>
 
-<span><%= link "Edit", to: physical_box_path(@conn, :edit, @physical_box) %></span>
-<span><%= link "Back", to: physical_box_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.physical_box_path(@conn, :edit, @physical_box) %></span>
+<span><%= link "Back", to: Routes.physical_box_path(@conn, :index) %></span>
 
 <h3>List Parents</h3>
 
@@ -44,15 +44,15 @@
         <td><%= relationship.parent.description %></td>
 
         <td class="text-right">
-          <span><%= link "Show", to: physical_box_path(@conn, :show, relationship.parent), class: "btn btn-default btn-xs" %></span>
-          <span><%= link "Delete Relationship", to: physical_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <span><%= link "Show", to: Routes.physical_box_path(@conn, :show, relationship.parent), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete Relationship", to: Routes.physical_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= link "Add parent", to: physical_relationship_path(@conn, :new, box_id: @physical_box) %></span>
+<span><%= link "Add parent", to: Routes.physical_relationship_path(@conn, :new, box_id: @physical_box) %></span>
 
 <h3>List Children</h3>
 
@@ -74,12 +74,12 @@
         <td><%= relationship.box.description %></td>
 
         <td class="text-right">
-          <span><%= link "Show", to: physical_box_path(@conn, :show, relationship.box), class: "btn btn-default btn-xs" %></span>
-          <span><%= link "Delete Relationship", to: physical_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <span><%= link "Show", to: Routes.physical_box_path(@conn, :show, relationship.box), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete Relationship", to: Routes.physical_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= link "Add children", to: physical_relationship_path(@conn, :new, parent_id: @physical_box) %></span>
+<span><%= link "Add children", to: Routes.physical_relationship_path(@conn, :new, parent_id: @physical_box) %></span>

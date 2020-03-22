@@ -20,8 +20,8 @@ defmodule BoxesWeb.VirtualBoxController do
     case Virtual.create_virtual_box(virtual_box_params) do
       {:ok, virtual_box} ->
         conn
-        |> put_flash(:info, ["Virtual box created successfully.", link("Create new one?", to: virtual_box_path(conn, :new))])
-        |> redirect(to: virtual_box_path(conn, :show, virtual_box))
+        |> put_flash(:info, ["Virtual box created successfully.", link("Create new one?", to: Routes.virtual_box_path(conn, :new))])
+        |> redirect(to: Routes.virtual_box_path(conn, :show, virtual_box))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -45,7 +45,7 @@ defmodule BoxesWeb.VirtualBoxController do
       {:ok, virtual_box} ->
         conn
         |> put_flash(:info, "Virtual box updated successfully.")
-        |> redirect(to: virtual_box_path(conn, :show, virtual_box))
+        |> redirect(to: Routes.virtual_box_path(conn, :show, virtual_box))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", virtual_box: virtual_box, changeset: changeset)
     end
@@ -57,6 +57,6 @@ defmodule BoxesWeb.VirtualBoxController do
 
     conn
     |> put_flash(:info, "Virtual box deleted successfully.")
-    |> redirect(to: virtual_box_path(conn, :index))
+    |> redirect(to: Routes.virtual_box_path(conn, :index))
   end
 end

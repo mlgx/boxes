@@ -1,5 +1,5 @@
 <h2>New Physical box</h2>
 
-<%= render "form.html", Map.put(assigns, :action, physical_box_path(@conn, :create)) %>
+<%= render "form.html", Map.put(assigns, :action, Routes.physical_box_path(@conn, :create)) %>
 
-<span><%= link "Back", to: physical_box_path(@conn, :index) %></span>
+<span><%= link "Back", to: Routes.physical_box_path(@conn, :index) %></span>

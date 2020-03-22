@@ -17,7 +17,7 @@
     <td><%= @physical_relationship.box.name %></td>
     <td><%= @physical_relationship.box.description %></td>
     <td class="text-right">
-        <span><%= link "Show", to: physical_box_path(@conn, :show, @physical_relationship.box), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Show", to: Routes.physical_box_path(@conn, :show, @physical_relationship.box), class: "btn btn-default btn-xs" %></span>
     </td>
   </tr>
 
@@ -27,11 +27,11 @@
     <td><%= @physical_relationship.parent.name %></td>
     <td><%= @physical_relationship.parent.description %></td>
     <td class="text-right">
-        <span><%= link "Show", to: physical_box_path(@conn, :show, @physical_relationship.parent), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Show", to: Routes.physical_box_path(@conn, :show, @physical_relationship.parent), class: "btn btn-default btn-xs" %></span>
     </td>
   </tr>
 
 </table>
 
-<span><%= link "Edit", to: physical_relationship_path(@conn, :edit, @physical_relationship) %></span>
-<span><%= link "Back", to: physical_relationship_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.physical_relationship_path(@conn, :edit, @physical_relationship) %></span>
+<span><%= link "Back", to: Routes.physical_relationship_path(@conn, :index) %></span>

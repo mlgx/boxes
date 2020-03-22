@@ -1,5 +1,5 @@
 <h2>New Virtual relationship</h2>
 
-<%= render "form.html", Map.put(assigns, :action, virtual_relationship_path(@conn, :create)) %>
+<%= render "form.html", Map.put(assigns, :action, Routes.virtual_relationship_path(@conn, :create)) %>
 
-<span><%= link "Back", to: virtual_relationship_path(@conn, :index) %></span>
+<span><%= link "Back", to: Routes.virtual_relationship_path(@conn, :index) %></span>

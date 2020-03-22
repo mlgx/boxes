@@ -20,13 +20,13 @@
       <td><%= virtual_relationship.parent.name %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: virtual_relationship_path(@conn, :show, virtual_relationship), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: virtual_relationship_path(@conn, :edit, virtual_relationship), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: virtual_relationship_path(@conn, :delete, virtual_relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.virtual_relationship_path(@conn, :show, virtual_relationship), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.virtual_relationship_path(@conn, :edit, virtual_relationship), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.virtual_relationship_path(@conn, :delete, virtual_relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Virtual relationship", to: virtual_relationship_path(@conn, :new) %></span>
+<span><%= link "New Virtual relationship", to: Routes.virtual_relationship_path(@conn, :new) %></span>

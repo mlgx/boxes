@@ -21,15 +21,16 @@ defmodule BoxesWeb do
     quote do
       use Phoenix.Controller, namespace: BoxesWeb
       import Plug.Conn
-      import BoxesWeb.Router.Helpers
       import BoxesWeb.Gettext
+      alias BoxesWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/boxes_web/templates",
-                        namespace: BoxesWeb
+      use Phoenix.View,
+        root: "lib/boxes_web/templates",
+        namespace: BoxesWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -37,9 +38,9 @@ defmodule BoxesWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import BoxesWeb.Router.Helpers
       import BoxesWeb.ErrorHelpers
       import BoxesWeb.Gettext
+      alias BoxesWeb.Router.Helpers, as: Routes
     end
   end
 

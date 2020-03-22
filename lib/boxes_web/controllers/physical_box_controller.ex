@@ -20,8 +20,8 @@ defmodule BoxesWeb.PhysicalBoxController do
     case Physical.create_physical_box(physical_box_params) do
       {:ok, physical_box} ->
         conn
-        |> put_flash(:info, ["Physical box created successfully. ", link("Create new one?", to: physical_box_path(conn, :new))])
-        |> redirect(to: physical_box_path(conn, :show, physical_box))
+        |> put_flash(:info, ["Physical box created successfully. ", link("Create new one?", to: Routes.physical_box_path(conn, :new))])
+        |> redirect(to: Routes.physical_box_path(conn, :show, physical_box))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -45,7 +45,7 @@ defmodule BoxesWeb.PhysicalBoxController do
       {:ok, physical_box} ->
         conn
         |> put_flash(:info, "Physical box updated successfully.")
-        |> redirect(to: physical_box_path(conn, :show, physical_box))
+        |> redirect(to: Routes.physical_box_path(conn, :show, physical_box))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", physical_box: physical_box, changeset: changeset)
     end
@@ -57,6 +57,6 @@ defmodule BoxesWeb.PhysicalBoxController do
 
     conn
     |> put_flash(:info, "Physical box deleted successfully.")
-    |> redirect(to: physical_box_path(conn, :index))
+    |> redirect(to: Routes.physical_box_path(conn, :index))
   end
 end
