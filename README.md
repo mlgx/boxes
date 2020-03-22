@@ -1,9 +1,30 @@
 # Boxes
 Boxes helps you keep track of where your stuff is.
 
+## Running
+
+```bash
+brew install elixir
+brew install postgresql
+brew install node
+# https://github.com/nodejs/node-gyp#on-macos
+
+psql -d postgres
+=# CREATE USER postgres CREATEDB PASSWORD '********';
+
+mix ecto.setup
+
+cd assets && npm install
+mix phx.digest
+mix phx.server
+
+open "http://0.0.0.0:4000/"
+```
+
 ## Concept
 Everything is a box.  
 You can have boxes inside a box.
+
 
 ## Types of boxes
 
@@ -102,7 +123,7 @@ INSERT INTO physical_boxes_relationships (id, parent_id) VALUES (4, 3);
 
 ## Rules for virtual boxes
 
-* Virtual Boxes (PBs) are unique and identified by a unique `id`.
+* Virtual Boxes (VBs) are unique and identified by a unique `id`.
 * To avoid confusion their `name` is also unique.
 
 ```sql
@@ -149,7 +170,7 @@ INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (2, 1);
 INSERT INTO virtual_boxes_relationships (id, parent_id) VALUES (1, 2);
 ```
 
-## Rules for physical and virtual boxes relationships
+## Rules for physical and virtual boxes relationships (NOT IMPLEMENTED YET, no db table creation, nothing)
 
 * VBs cannot be inside PBs.
 * A PB can be inside a VB (but not inside multiple VBs at once).
