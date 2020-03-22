@@ -28,7 +28,7 @@ defmodule BoxesWeb.VirtualBoxController do
   end
 
   def show(conn, %{"id" => id}) do
-    virtual_box = Virtual.get_virtual_box!(id, %{preload: [:virtual_parents, :virtual_children]})
+    virtual_box = Virtual.get_virtual_box!(id, %{preload: [:virtual_parent, :virtual_children]})
     render(conn, "show.html", virtual_box: virtual_box)
   end
 
