@@ -1,18 +1,21 @@
 defmodule BoxesWeb.VirtualRelationshipController do
   use BoxesWeb, :controller
+
+  import Phoenix.HTML.Link
+
   alias BoxesWeb.QueryFilter
 
   alias Boxes.Virtual
   alias Boxes.Virtual.VirtualRelationship
 
   def index(conn, _params) do
-    virtual_boxes_relationships = Virtual.list_virtual_boxes_relationships()
+    virtual_boxes_relationships = Virtual.list_virtual_boxes_relationships(%{preload: [:box, :parent]})
     render(conn, "index.html", virtual_boxes_relationships: virtual_boxes_relationships)
   end
 
   def new(conn, params) do
     changeset = Virtual.change_virtual_relationship(%VirtualRelationship{})
-    virtual_boxes = Boxes.Virtual.list_virtual_boxes()
+    virtual_boxes = Virtual.list_virtual_boxes()
     params = QueryFilter.changeset(%VirtualRelationship{}, params)
     render(conn, "new.html", changeset: changeset, virtual_boxes: virtual_boxes, params: params)
   end
@@ -21,24 +24,25 @@ defmodule BoxesWeb.VirtualRelationshipController do
     case Virtual.create_virtual_relationship(virtual_relationship_params) do
       {:ok, virtual_relationship} ->
         conn
-        |> put_flash(:info, "Virtual relationship created successfully.")
+        |> put_flash(:info, ["Virtual relationship created successfully.", link("Create new one?", to: virtual_relationship_path(conn, :new))])
         |> redirect(to: virtual_relationship_path(conn, :show, virtual_relationship))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        virtual_boxes = Boxes.Virtual.list_virtual_boxes()
+        virtual_boxes = Virtual.list_virtual_boxes()
         render(conn, "new.html", changeset: changeset, virtual_boxes: virtual_boxes, params: [])
     end
   end
 
   def show(conn, %{"id" => id}) do
-    virtual_relationship = Virtual.get_virtual_relationship!(id)
+    virtual_relationship = Virtual.get_virtual_relationship!(id, %{preload: [:box, :parent]})
     render(conn, "show.html", virtual_relationship: virtual_relationship)
   end
 
   def edit(conn, %{"id" => id}) do
+    virtual_boxes = Virtual.list_virtual_boxes()
     virtual_relationship = Virtual.get_virtual_relationship!(id)
     changeset = Virtual.change_virtual_relationship(virtual_relationship)
-    render(conn, "edit.html", virtual_relationship: virtual_relationship, changeset: changeset)
+    render(conn, "edit.html", virtual_boxes: virtual_boxes, virtual_relationship: virtual_relationship, changeset: changeset, params: [])
   end
 
   def update(conn, %{"id" => id, "virtual_relationship" => virtual_relationship_params}) do

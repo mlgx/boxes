@@ -3,7 +3,9 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Box</th>
+      <th></th>
       <th>Parent</th>
 
       <th></th>
@@ -13,7 +15,9 @@
 <%= for physical_relationship <- @physical_boxes_relationships do %>
     <tr>
       <td><%= physical_relationship.box_id %></td>
+      <td><%= physical_relationship.box.name %></td>
       <td><%= physical_relationship.parent_id %></td>
+      <td><%= physical_relationship.parent.name %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: physical_relationship_path(@conn, :show, physical_relationship), class: "btn btn-default btn-xs" %></span>

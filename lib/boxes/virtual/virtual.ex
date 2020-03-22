@@ -6,6 +6,19 @@ defmodule Boxes.Virtual do
   import Ecto.Query, warn: false
   alias Boxes.Repo
 
+  defp apply_params(query, params) do
+    from(q in query)
+    |> apply_preload(params[:preload])
+  end
+
+  defp apply_preload(query, nil), do: query
+
+  defp apply_preload(query, params) do
+    from(q in query,
+      preload: ^params
+    )
+  end
+
   alias Boxes.Virtual.VirtualBox
 
   @doc """
@@ -17,8 +30,10 @@ defmodule Boxes.Virtual do
       [%VirtualBox{}, ...]
 
   """
-  def list_virtual_boxes do
-    Repo.all(VirtualBox)
+  def list_virtual_boxes(params \\ %{}) do
+    from(b in VirtualBox)
+    |> apply_params(params)
+    |> Repo.all()
   end
 
   @doc """
@@ -35,15 +50,13 @@ defmodule Boxes.Virtual do
       ** (Ecto.NoResultsError)
 
   """
-  def get_virtual_box!(id) do
-    query =
-      from(b in VirtualBox,
-        where: b.id == ^id,
-        select: b,
-        preload: [:virtual_parent, :virtual_children]
-      )
-
-    Repo.one!(query)
+  def get_virtual_box!(id, params \\ %{}) do
+    from(b in VirtualBox,
+      where: b.id == ^id,
+      select: b
+    )
+    |> apply_params(params)
+    |> Repo.one!()
   end
 
   @doc """
@@ -122,8 +135,10 @@ defmodule Boxes.Virtual do
       [%VirtualRelationship{}, ...]
 
   """
-  def list_virtual_boxes_relationships do
-    Repo.all(VirtualRelationship)
+  def list_virtual_boxes_relationships(params \\ %{}) do
+    from(r in VirtualRelationship)
+    |> apply_params(params)
+    |> Repo.all()
   end
 
   @doc """
@@ -140,15 +155,13 @@ defmodule Boxes.Virtual do
       ** (Ecto.NoResultsError)
 
   """
-  def get_virtual_relationship!(id) do
-    query =
-      from(r in VirtualRelationship,
-        where: r.id == ^id,
-        select: r,
-        preload: [:box, :parent]
-      )
-
-    Repo.one!(query)
+  def get_virtual_relationship!(id, params \\ %{}) do
+    from(r in VirtualRelationship,
+      where: r.id == ^id,
+      select: r
+    )
+    |> apply_params(params)
+    |> Repo.one!()
   end
 
   @doc """

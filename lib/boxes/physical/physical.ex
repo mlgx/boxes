@@ -6,6 +6,19 @@ defmodule Boxes.Physical do
   import Ecto.Query, warn: false
   alias Boxes.Repo
 
+  defp apply_params(query, params) do
+    from(q in query)
+    |> apply_preload(params[:preload])
+  end
+
+  defp apply_preload(query, nil), do: query
+
+  defp apply_preload(query, params) do
+    from(q in query,
+      preload: ^params
+    )
+  end
+
   alias Boxes.Physical.PhysicalBox
 
   @doc """
@@ -17,8 +30,10 @@ defmodule Boxes.Physical do
       [%PhysicalBox{}, ...]
 
   """
-  def list_physical_boxes do
-    Repo.all(PhysicalBox)
+  def list_physical_boxes(params \\ %{}) do
+    from(b in PhysicalBox)
+    |> apply_params(params)
+    |> Repo.all()
   end
 
   @doc """
@@ -35,15 +50,13 @@ defmodule Boxes.Physical do
       ** (Ecto.NoResultsError)
 
   """
-  def get_physical_box!(id) do
-    query =
-      from(b in PhysicalBox,
-        where: b.id == ^id,
-        select: b,
-        preload: [:physical_parents, :physical_children]
-      )
-
-    Repo.one!(query)
+  def get_physical_box!(id, params \\ %{}) do
+    from(b in PhysicalBox,
+      where: b.id == ^id,
+      select: b
+    )
+    |> apply_params(params)
+    |> Repo.one!()
   end
 
   @doc """
@@ -122,8 +135,10 @@ defmodule Boxes.Physical do
       [%PhysicalRelationship{}, ...]
 
   """
-  def list_physical_boxes_relationships do
-    Repo.all(PhysicalRelationship)
+  def list_physical_boxes_relationships(params \\ %{}) do
+    from(r in PhysicalRelationship)
+    |> apply_params(params)
+    |> Repo.all()
   end
 
   @doc """
@@ -140,15 +155,13 @@ defmodule Boxes.Physical do
       ** (Ecto.NoResultsError)
 
   """
-  def get_physical_relationship!(id) do
-    query =
-      from(r in PhysicalRelationship,
-        where: r.id == ^id,
-        select: r,
-        preload: [:box, :parent]
-      )
-
-    Repo.one!(query)
+  def get_physical_relationship!(id, params \\ %{}) do
+    from(r in PhysicalRelationship,
+      where: r.id == ^id,
+      select: r
+    )
+    |> apply_params(params)
+    |> Repo.one!()
   end
 
   @doc """

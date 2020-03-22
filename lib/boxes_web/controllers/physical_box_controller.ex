@@ -1,6 +1,8 @@
 defmodule BoxesWeb.PhysicalBoxController do
   use BoxesWeb, :controller
 
+  import Phoenix.HTML.Link
+
   alias Boxes.Physical
   alias Boxes.Physical.PhysicalBox
 
@@ -18,7 +20,7 @@ defmodule BoxesWeb.PhysicalBoxController do
     case Physical.create_physical_box(physical_box_params) do
       {:ok, physical_box} ->
         conn
-        |> put_flash(:info, "Physical box created successfully.")
+        |> put_flash(:info, ["Physical box created successfully. ", link("Create new one?", to: physical_box_path(conn, :new))])
         |> redirect(to: physical_box_path(conn, :show, physical_box))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -26,7 +28,7 @@ defmodule BoxesWeb.PhysicalBoxController do
   end
 
   def show(conn, %{"id" => id}) do
-    physical_box = Physical.get_physical_box!(id)
+    physical_box = Physical.get_physical_box!(id, %{preload: [:physical_parents, :physical_children]})
     render(conn, "show.html", physical_box: physical_box)
   end
 

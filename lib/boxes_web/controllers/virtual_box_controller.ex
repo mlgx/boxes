@@ -1,6 +1,8 @@
 defmodule BoxesWeb.VirtualBoxController do
   use BoxesWeb, :controller
 
+  import Phoenix.HTML.Link
+
   alias Boxes.Virtual
   alias Boxes.Virtual.VirtualBox
 
@@ -18,7 +20,7 @@ defmodule BoxesWeb.VirtualBoxController do
     case Virtual.create_virtual_box(virtual_box_params) do
       {:ok, virtual_box} ->
         conn
-        |> put_flash(:info, "Virtual box created successfully.")
+        |> put_flash(:info, ["Virtual box created successfully.", link("Create new one?", to: virtual_box_path(conn, :new))])
         |> redirect(to: virtual_box_path(conn, :show, virtual_box))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -26,7 +28,7 @@ defmodule BoxesWeb.VirtualBoxController do
   end
 
   def show(conn, %{"id" => id}) do
-    virtual_box = Virtual.get_virtual_box!(id)
+    virtual_box = Virtual.get_virtual_box!(id, %{preload: [:virtual_parents, :virtual_children]})
     render(conn, "show.html", virtual_box: virtual_box)
   end
 

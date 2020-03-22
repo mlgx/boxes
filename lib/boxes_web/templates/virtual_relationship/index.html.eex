@@ -3,7 +3,9 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Box</th>
+      <th></th>
       <th>Parent</th>
 
       <th></th>
@@ -13,7 +15,9 @@
 <%= for virtual_relationship <- @virtual_boxes_relationships do %>
     <tr>
       <td><%= virtual_relationship.box_id %></td>
+      <td><%= virtual_relationship.box.name %></td>
       <td><%= virtual_relationship.parent_id %></td>
+      <td><%= virtual_relationship.parent.name %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: virtual_relationship_path(@conn, :show, virtual_relationship), class: "btn btn-default btn-xs" %></span>
