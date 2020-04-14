@@ -7,7 +7,7 @@ defmodule BoxesWeb.VirtualBoxController do
   alias Boxes.Virtual.VirtualBox
 
   def index(conn, _params) do
-    virtual_boxes = Virtual.list_virtual_boxes()
+    virtual_boxes = Virtual.list_virtual_boxes(%{order_by: [:name]})
     render(conn, "index.html", virtual_boxes: virtual_boxes)
   end
 

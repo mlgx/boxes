@@ -7,7 +7,7 @@ defmodule BoxesWeb.PhysicalBoxController do
   alias Boxes.Physical.PhysicalBox
 
   def index(conn, _params) do
-    physical_boxes = Physical.list_physical_boxes()
+    physical_boxes = Physical.list_physical_boxes(%{order_by: [:name]})
     render(conn, "index.html", physical_boxes: physical_boxes)
   end
 

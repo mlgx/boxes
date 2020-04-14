@@ -9,6 +9,7 @@ defmodule Boxes.Physical do
   defp apply_params(query, params) do
     from(q in query)
     |> apply_preload(params[:preload])
+    |> apply_order_by(params[:order_by])
   end
 
   defp apply_preload(query, nil), do: query
@@ -16,6 +17,14 @@ defmodule Boxes.Physical do
   defp apply_preload(query, params) do
     from(q in query,
       preload: ^params
+    )
+  end
+
+  defp apply_order_by(query, nil), do: query
+
+  defp apply_order_by(query, params) do
+    from(q in query,
+      order_by: ^params
     )
   end
 
