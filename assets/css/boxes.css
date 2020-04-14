@@ -1,0 +1,32 @@
+/* Control the width of each column and the way the text overflows. */
+.table.list-box {
+  table-layout: fixed;
+}
+
+.table.list-box tr {
+  width: 100%;
+}
+.table.list-box td, .table.list-box th {
+  width: 21%;
+}
+.table.list-box td:nth-child(2), .table.list-box th:nth-child(2) {
+  width: 58%;
+}
+
+.table.list-box td:nth-child(1), .table.list-box th:nth-child(1) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.table.list-box td:nth-child(2), .table.list-box th:nth-child(2) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* On small screen, only display the "Show" button. Edit and Delete can be done from the element's page. */
+@media (max-width: 767px) {
+  .table.list-box td.text-right span:nth-child(2), .table.list-box td.text-right span:nth-child(3) {
+    display: none;
+  }
+}
