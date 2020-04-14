@@ -19,7 +19,7 @@
 
 <h3>Parent</h3>
 
-<table class="table">
+<table class="table list-box">
   <thead>
     <tr>
       <th>Name</th>
@@ -36,7 +36,7 @@
 
         <td class="text-right">
           <span><%= link "Show", to: Routes.virtual_box_path(@conn, :show, @virtual_box.virtual_parent), class: "btn btn-default btn-xs" %></span>
-          <span><%= link "Delete Relationship", to: Routes.virtual_relationship_path(@conn, :delete, @virtual_box.virtual_parent_relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <span><%= link "Remove", to: Routes.virtual_relationship_path(@conn, :delete, @virtual_box.virtual_parent_relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         </td>
       </tr>
     <% end %>
@@ -49,7 +49,7 @@
 
 <h3>List Children</h3>
 
-<table class="table">
+<table class="table list-box">
   <thead>
     <tr>
       <th>Name</th>
@@ -68,7 +68,7 @@
 
         <td class="text-right">
           <span><%= link "Show", to: Routes.virtual_box_path(@conn, :show, relationship.box), class: "btn btn-default btn-xs" %></span>
-          <span><%= link "Delete Relationship", to: Routes.virtual_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <span><%= link "Remove", to: Routes.virtual_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         </td>
       </tr>
     <% end %>

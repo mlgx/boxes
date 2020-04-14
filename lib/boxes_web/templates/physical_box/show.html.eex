@@ -26,7 +26,7 @@
   copies of <strong><%= @physical_box.name %></strong>.
 <% end %>
 
-<table class="table">
+<table class="table list-box">
   <thead>
     <tr>
       <th>Name</th>
@@ -45,7 +45,7 @@
 
         <td class="text-right">
           <span><%= link "Show", to: Routes.physical_box_path(@conn, :show, relationship.parent), class: "btn btn-default btn-xs" %></span>
-          <span><%= link "Delete Relationship", to: Routes.physical_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <span><%= link "Remove", to: Routes.physical_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         </td>
       </tr>
     <% end %>
@@ -56,7 +56,7 @@
 
 <h3>List Children</h3>
 
-<table class="table">
+<table class="table list-box">
   <thead>
     <tr>
       <th>Name</th>
@@ -75,7 +75,7 @@
 
         <td class="text-right">
           <span><%= link "Show", to: Routes.physical_box_path(@conn, :show, relationship.box), class: "btn btn-default btn-xs" %></span>
-          <span><%= link "Delete Relationship", to: Routes.physical_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <span><%= link "Remove", to: Routes.physical_relationship_path(@conn, :delete, relationship), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         </td>
       </tr>
     <% end %>

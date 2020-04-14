@@ -1,6 +1,6 @@
 <h2>Listing Virtual boxes</h2>
 
-<table class="table">
+<table class="table list-box">
   <thead>
     <tr>
       <th>Name</th>
