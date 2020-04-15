@@ -19,6 +19,11 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "terser-webpack-plugin": "^2.3.2",
     "webpack": "4.41.5",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.2",
+    "set-value": ">=2.0.1",
+    "mixin-deep": ">=1.3.2",
+    "lodash": ">=4.17.12",
+    "braces": ">=2.3.1",
+    "clean-css": ">=4.1.11"
   }
 }
