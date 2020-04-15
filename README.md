@@ -12,9 +12,10 @@ brew install node
 psql -d postgres
 =# CREATE USER postgres CREATEDB PASSWORD '********';
 
+mix deps.get
 mix ecto.setup
-
-cd assets && npm install
+(cd assets && npm install)
+npm run deploy --prefix ./assets
 mix phx.digest
 mix phx.server
 
